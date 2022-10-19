@@ -1,0 +1,27 @@
+{
+  "name": "stream-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "tailwind:css": "postcss -w public/styles/tailwind.css -o public/styles/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "phamthainb",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.12",
+    "byline": "^5.0.0",
+    "CBuffer": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fs-tail-stream": "^1.1.0",
+    "hbs": "^4.2.0",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.18",
+    "postcss-cli": "^10.0.0",
+    "socket.io": "^4.1.2",
+    "tailwindcss": "^3.1.8"
+  }
+}

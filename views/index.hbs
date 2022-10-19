@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stream Log | phamthainb</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body class="p-[0_12px_24px]">
+    <header class="w-full fixed top-0 left-0 bg-black flex flex-row justify-between p-[12px]">
+        <div class="flex ">
+            <select name="type" id="type" class="mr-[24px]">
+                <option value="tail">tail -F</option>
+                <option value="vim">vim</option>
+            </select>
+            <select name="list_files" id="list_files">
+                {{#each listFiles}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="search">
+            <input type="text" />
+        </div>
+    </header>
+    <!-- log content -->
+    <div class="mt-[50px]">
+        <div id="log">
+
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+
+<script>
+    var lineCount = 0;
+    var socket = io();
+    var logElement = document.getElementById('log')
+    socket.on('line', (req) => {
+        const s = document.createElement('p')
+        s.append(++lineCount + " " + req);
+        logElement.append(s)
+    });
+
+    // onchange file
+    var pickFile = document.getElementById('list_files');
+    pickFile.addEventListener('change', function (evt) {
+        console.log(evt.target.value);
+        fetch('/change-file', {
+            method: 'POST',
+            body: JSON.stringify({
+                "fileName": evt.target.value
+            }),
+            headers: { 'Content-Type': 'application/json' },
+
+        }).then(res => {
+            logElement.innerHTML = "";
+            lineCount = 0;
+        })
+    })
+</script>
+
+</html>
