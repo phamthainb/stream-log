@@ -5,9 +5,10 @@
 
 - [x] Multiple file - Select option to file want stream
 - [x] Tail -F
-- [-] Vim for advance searching && tracking log
+- [-] Vim for advance searching && tracking log: full file read
 - [-] UI friendly like: auto scroll, hightline new line appear, filter (like `grep`)
 - [-] Performance fine
+- [-] Authorization
 
 # Start dev
 
